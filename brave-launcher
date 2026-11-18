@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# brave-persona <name>
+set -eu
+
+case "${1:-}" in
+  ny)  TZ_NAME="America/New_York"  ;;
+  lon) TZ_NAME="Europe/London"     ;;
+  chi) TZ_NAME="Europe/Chisinau"   ;;
+  buc) TZ_NAME="Europe/Bucharest"  ;;
+  par) TZ_NAME="Europe/Paris"      ;;
+  tbs) TZ_NAME="Asia/Tbilisi"      ;;
+  ist) TZ_NAME="Europe/Istanbul"   ;;
+  *)   echo "Personas: chi buc par tbs ist ny lon" >&2; exit 1 ;;
+esac
+
+PROFILE="$HOME/.config/brave-personas/$1"
+mkdir -p "$PROFILE"
+
+exec env TZ="$TZ_NAME" LANGUAGE="en_US:en" brave-browser \
+  --user-data-dir="$PROFILE" \
+  --lang=en-US \
+  --silent-debugger-extension-api \
+  --no-first-run
