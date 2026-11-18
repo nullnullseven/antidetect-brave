@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "Win Persona",
+  "version": "0.3",
+  "description": "Windows User-Agent, platform and Client Hints via debugger",
+  "permissions": ["debugger", "tabs", "alarms"],
+  "action": { "default_title": "Win Persona" },
+  "background": { "service_worker": "background.js" }
+}
